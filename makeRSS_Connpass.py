@@ -61,7 +61,9 @@ def main():
 
         print(f"Found {events_found} events on page {page}.")
         
-        next_page = re.search(r'<li class="to_next"><a href="\?page=(\d+)">次へ&gt;&gt;<\/a><\/li>', html_content)
+        #next_page = re.search(r'<li class="to_next"><a href="\?page=(\d+)">次へ&gt;&gt;<\/a><\/li>', html_content)
+        next_page = re.search(r'<a href="\?page=(\d+)">次へ&gt;&gt;<\/a>', html_content)
+
         if next_page:
             url = base_url + "?page=" + next_page.group(1)
         else:
