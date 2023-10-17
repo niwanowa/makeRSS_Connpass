@@ -5,6 +5,9 @@ from xml.dom import minidom
 import os
 
 def main():
+    
+    event_pattern = re.compile(r'<div class="recent_event_list">([\s\S]*?)<\/div>\s*<\/div>')
+    
     output_file = "makeRSS_Connpass.xml"
     base_url = "http://connpass.com/explore/"
     url = base_url
@@ -49,7 +52,7 @@ def main():
 
         
         channel = root.find("channel")
-        event_pattern = re.compile(r'<div class="recent_event_list">([\s\S]*?)<\/div>\s*<\/div>')
+        
 
         found_events = event_pattern.findall(html_content)
         print(f"Found {len(found_events)} events on page {page}.")
