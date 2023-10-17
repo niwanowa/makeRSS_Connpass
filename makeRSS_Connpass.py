@@ -39,6 +39,14 @@ def main():
         
         html_content = response.text
         print(f"Response status code: {response.status_code}")
+
+        
+        events_found = 0  # このページで見つかったイベントの数 <- この行を追加
+    
+        for match in event_pattern.findall(html_content):
+            events_found += 1  # この行も追加
+            event_html = match
+
         
         channel = root.find("channel")
         event_pattern = re.compile(r'<div class="recent_event_list">([\s\S]*?)<\/div>\s*<\/div>')
@@ -64,6 +72,8 @@ def main():
                 ET.SubElement(new_item, "link").text = link
                 ET.SubElement(new_item, "pubDate").text = date
 
+        print(f"Found {events_found} events on page {page}.")  # このページで何件見つかったか出力 <- この行も追加
+        
         # 次のページへ
         next_page = re.search(r'<li class="to_next"><a href="\?page=(\d+)">次へ&gt;&gt;<\/a><\/li>', html_content)
         if next_page:
