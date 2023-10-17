@@ -10,6 +10,8 @@ def main():
     url = base_url
     include_words = ["AI", "ChatGPT"]
 
+    print(f"Starting with base URL: {base_url}")
+
     # 既存のRSSフィードを読み込む
     existing_links = set()
     if os.path.exists(output_file):
@@ -28,12 +30,18 @@ def main():
 
     # 30ページまでスクレイピング
     for page in range(1, 31):
+        print(f"Fetching page {page}...")
         response = requests.get(url)
         html_content = response.text
+        print(f"Response status code: {response.status_code}")
+        
         channel = root.find("channel")
-
         event_pattern = re.compile(r'<div class="recent_event_list">([\s\S]*?)<\/div>\s*<\/div>')
-        for match in event_pattern.findall(html_content):
+
+        found_events = event_pattern.findall(html_content)
+        print(f"Found {len(found_events)} events on page {page}.")
+        
+        for match in found_events:
             event_html = match
 
             date = re.search(r'title="(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)"', event_html).group(1)
@@ -56,6 +64,7 @@ def main():
         if next_page:
             url = base_url + "?page=" + next_page.group(1)
         else:
+            print("No more pages found.")
             break  # 次のページがなければ終了
 
     xml_str = ET.tostring(root)
