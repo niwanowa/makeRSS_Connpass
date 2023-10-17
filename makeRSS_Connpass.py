@@ -93,3 +93,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# XMLの最後の部分で、行間を詰める処理を追加
+xml_pretty_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
+xml_pretty_str = os.linesep.join([s for s in xml_pretty_str.splitlines() if s.strip()])
+  
+with open(output_file, "w") as f:
+    f.write(xml_pretty_str)
