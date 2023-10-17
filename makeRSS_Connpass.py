@@ -29,7 +29,7 @@ def main():
         ET.SubElement(channel, "description").text = description
         ET.SubElement(channel, "link").text = "https://example.com"
 
-    for page in range(1, 101):
+    for page in range(1, 10):
         print(f"Fetching page {page}...")
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers)
