@@ -4,7 +4,11 @@
   
   
   
+  
+  
   <channel>
+    
+    
     
     
     
@@ -14,7 +18,11 @@
     
     
     
+    
+    
     <description>Connpassからのイベント情報を提供します。</description>
+    
+    
     
     
     
@@ -22,16 +30,30 @@
     <link>https://example.com</link>
     
     
+    
   
   
+    
     <item>
+      
+      
       <title>- 生成AI業界のトップランナーが語る - ビジネスへのアドオンで抑えるべき知識と最新動向</title>
+      
+      
       <link>https://jdla.connpass.com/event/299712/</link>
+      
+      
       <pubDate>2023-10-22T11:00:00Z</pubDate>
+      
+    
     </item>
+    
+  
   </channel>
   
   
+  
+
 
 
 </rss>
