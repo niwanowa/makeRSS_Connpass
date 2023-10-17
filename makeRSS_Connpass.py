@@ -47,6 +47,8 @@ def main():
             date = re.search(r'title="(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)"', event_html).group(1)
             title_link = re.search(r'<a class="image_link event_thumb" href="(https:\/\/[a-zA-Z0-9\-\.\/]+)" title="(.*?)">', event_html)
             link, title = title_link.groups()
+
+            print(f"Scraped Event: {title}, {link}")  # タイトルとリンクを出力
             
             if link in existing_links:
                 continue
