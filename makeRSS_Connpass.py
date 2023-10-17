@@ -85,18 +85,13 @@ def main():
             print("No more pages found.")
             break  # 次のページがなければ終了
 
-    xml_str = ET.tostring(root)
-    xml_pretty_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
-
-    with open(output_file, "w") as f:
-        f.write(xml_pretty_str)
 
 if __name__ == "__main__":
     main()
 
-# XMLの最後の部分で、行間を詰める処理を追加
+xml_str = ET.tostring(root)  # この行をmain関数の中に移動
 xml_pretty_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
-xml_pretty_str = os.linesep.join([s for s in xml_pretty_str.splitlines() if s.strip()])
-  
+xml_pretty_str = os.linesep.join([s for s in xml_pretty_str.splitlines() if s.strip()])  # 行間詰める処理
+
 with open(output_file, "w") as f:
     f.write(xml_pretty_str)
