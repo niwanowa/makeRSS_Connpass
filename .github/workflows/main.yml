@@ -30,6 +30,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git pull origin main || exit 0  # ここでpullして、エラーが出たら無視する
         git add -A  # 全ての変更をステージング
         git commit -m "Updated XML with new RSS entries" || exit 0  # 変更がない場合はエラーを無視
         git push https://${{ secrets.MY_SECRET_TOKEN }}@github.com/kh5402/makeRSS_Connpass.git
