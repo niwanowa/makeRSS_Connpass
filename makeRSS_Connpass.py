@@ -31,7 +31,12 @@ def main():
     # 30ページまでスクレイピング
     for page in range(1, 31):
         print(f"Fetching page {page}...")
-        response = requests.get(url)
+        
+        #response = requests.get(url)
+        
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers)
+        
         html_content = response.text
         print(f"Response status code: {response.status_code}")
         
