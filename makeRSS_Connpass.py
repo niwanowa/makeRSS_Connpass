@@ -70,7 +70,7 @@ def main():
             print("No more pages found.")
             break
 
-    xml_str = ET.tostring(root)
+    xml_str = ET.tostring(root).decode('utf-8')
     print("=== Debug: XML String Start ===")
     print(xml_str)
     print("=== Debug: XML String End ===")
