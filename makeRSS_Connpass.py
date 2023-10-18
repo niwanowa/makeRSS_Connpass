@@ -70,7 +70,10 @@ def main():
             print("No more pages found.")
             break
 
-    xml_str = ET.tostring(root).decode('utf-8')
+    xml_str = ET.tostring(root)
+    # 不正なXML文字を取り除く
+    xml_str = re.sub(u'[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]', '', xml_str.decode()).encode()
+
     print("=== Debug: XML String Start ===")
     print(xml_str)
     print("=== Debug: XML String End ===")
