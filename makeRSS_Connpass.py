@@ -71,6 +71,9 @@ def main():
             break
 
     xml_str = ET.tostring(root)
+    print("=== Debug: XML String Start ===")
+    print(xml_str)
+    print("=== Debug: XML String End ===")
     xml_pretty_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
     xml_pretty_str = os.linesep.join([s for s in xml_pretty_str.splitlines() if s.strip()])
     
