@@ -4,13 +4,13 @@ import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import os
 
-def main():
+def main(kwords):
     event_pattern = re.compile(r'<div class="recent_event_list">([\s\S]*?)<\/div>\s*<\/div>')
     
     output_file = "makeRSS_Connpass.xml"
     base_url = "http://connpass.com/explore/"
     url = base_url
-    include_words = ["AI", "ChatGPT"]
+    include_words = kwords
 
     print(f"Starting with base URL: {base_url}")
 
@@ -84,4 +84,5 @@ def main():
         f.write(xml_pretty_str)
 
 if __name__ == "__main__":
-    main()
+    kwords = ["Hokkaido", "北海道"]
+    main(kwords)
